@@ -189,3 +189,6 @@ setInterval(greet, 3 * 1000); // 3 * 1000 = 3 seconds
 
 // setInterval(displayTime, 1000);
 
+console.log("Hello World");
+
+
