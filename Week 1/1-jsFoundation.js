@@ -1,3 +1,4 @@
+// Week 1.2 | JS Foundation
 /* 
 // Variable declaration (var, let, const)
 var a = 1; // if we declare a var after console.log(a) it will give an undefined output

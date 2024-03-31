@@ -1,3 +1,4 @@
+// 1.3 | Basics JS APIs (Beginners)
 /*
 console.log("===STRINGS METHODS===");
 
