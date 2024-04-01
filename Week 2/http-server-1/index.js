@@ -11,7 +11,7 @@ const app = express();
 // 6. create a simple http sever in c from scratch
 // 7. create a todo application where u store data in a file
 // 8. create a rust/golang/java http server
-// 9.  middlewares
+// 9. middlewares
 
 app.get("/route-handler", (req, res) => {
   // headers, body, query parameters
