@@ -36,92 +36,119 @@
 
 // console.log("==================================================");
 
+// const express = require("express");
+
+// const app = express();
+
+// var users = [
+//   {
+//     name: "John",
+//     kidney: [
+//       {
+//         healthy: true,
+//       },
+//     ],
+//   },
+// ];
+
+// app.use(express.json());
+
+// // req, res => request & response
+// app.get("/", (req, res) => {
+//   const johnKidneys = users[0].kidney;
+//   const numbersOfKidneys = johnKidneys.length;
+//   let numbersOfHealthyKidneys = 0;
+//   for (let i = 0; i < johnKidneys.length; i++) {
+//     if (johnKidneys[i].healthy) {
+//       numbersOfHealthyKidneys++;
+//     }
+//   }
+//   const numberOfUnhealthyKidneys = numbersOfKidneys - numbersOfHealthyKidneys;
+//   res.json({
+//     numbersOfKidneys,
+//     numbersOfHealthyKidneys,
+//     numberOfUnhealthyKidneys,
+//   });
+// });
+
+// app.post("/", (req, res) => {
+//   const isHealthy = req.body.isHealthy;
+//   users[0].kidney.push({
+//     healthy: isHealthy,
+//   });
+//   res.json({
+//     message: "Kidney inserted",
+//   });
+// });
+
+// app.put("/", (req, res) => {
+//   for (let i = 0; i < users[0].kidney.length; i++) {
+//     users[0].kidney[i].healthy = true;
+//   }
+//   res.json({
+//     message: "Kidney replaced",
+//   });
+// });
+
+// // removing all the unhealthy kidneys
+// app.delete("/", (req, res) => {
+//   // you should return a 411
+//   // only if at-least one unhealthy kidney is present else return 411
+//   if (isThereAtLeastOneUnhealthyKidney()) {
+//     const newKidneys = [];
+//     for (let i = 0; i < users[0].kidney.length; i++) {
+//       if (users[0].kidney[i].healthy) {
+//         newKidneys.push({
+//           healthy: true,
+//         });
+//       }
+//     }
+//     users[0].kidney = newKidneys;
+//     res.json({
+//       message: "Kidney removed",
+//     });
+//   } else{
+//     res.status(411).json({
+//       message: "No unhealthy kidneys present",
+//     });
+//   }
+// });
+
+// function isThereAtLeastOneUnhealthyKidney() {
+//   let atLeastOneUnhealthyKidney = false;
+//   for (let i = 0; i < users[0].kidney.length; i++) {
+//     if (!users[0].kidney[i].healthy) {
+//       atLeastOneUnhealthyKidney = true;
+//     }
+//   }
+//   return atLeastOneUnhealthyKidney;
+// }
+
+// app.listen(3000);
+
+// console.log("==================================================");
+
 const express = require("express");
+
+const fs = require("fs");
 
 const app = express();
 
-var users = [
-  {
-    name: "John",
-    kidney: [
-      {
-        healthy: true,
-      },
-    ],
-  },
-];
-
-app.use(express.json());
-
-// req, res => request & response
-app.get("/", (req, res) => {
-  const johnKidneys = users[0].kidney;
-  const numbersOfKidneys = johnKidneys.length;
-  let numbersOfHealthyKidneys = 0;
-  for (let i = 0; i < johnKidneys.length; i++) {
-    if (johnKidneys[i].healthy) {
-      numbersOfHealthyKidneys++;
-    }
-  }
-  const numberOfUnhealthyKidneys = numbersOfKidneys - numbersOfHealthyKidneys;
-  res.json({
-    numbersOfKidneys,
-    numbersOfHealthyKidneys,
-    numberOfUnhealthyKidneys,
-  });
-});
-
-app.post("/", (req, res) => {
-  const isHealthy = req.body.isHealthy;
-  users[0].kidney.push({
-    healthy: isHealthy,
-  });
-  res.json({
-    message: "Kidney inserted",
-  });
-});
-
-app.put("/", (req, res) => {
-  for (let i = 0; i < users[0].kidney.length; i++) {
-    users[0].kidney[i].healthy = true;
-  }
-  res.json({
-    message: "Kidney replaced",
-  });
-});
-
-// removing all the unhealthy kidneys
-app.delete("/", (req, res) => {
-  // you should return a 411
-  // only if at-least one unhealthy kidney is present else return 411
-  if (isThereAtLeastOneUnhealthyKidney()) {
-    const newKidneys = [];
-    for (let i = 0; i < users[0].kidney.length; i++) {
-      if (users[0].kidney[i].healthy) {
-        newKidneys.push({
-          healthy: true,
-        });
-      }
-    }
-    users[0].kidney = newKidneys;
+app.get("/files/:fileName", function (req, res) {
+  const name = req.params.fileName;
+  console.log(name);
+  fs.readFile(name, "utf-8", function (err, data) {
+    if (err) throw err;
     res.json({
-      message: "Kidney removed",
-    });
-  } else{
-    res.status(411).json({
-      message: "No unhealthy kidneys present",
-    });
-  }
+        data
+    })
+  });
 });
-
-function isThereAtLeastOneUnhealthyKidney() {
-  let atLeastOneUnhealthyKidney = false;
-  for (let i = 0; i < users[0].kidney.length; i++) {
-    if (!users[0].kidney[i].healthy) {
-      atLeastOneUnhealthyKidney = true;
-    }
-  }
-  return atLeastOneUnhealthyKidney;
-}
 
 app.listen(3000);
+
+// output :
+// http://localhost:3000/files/file.txt
+// {"data":"My name is Aman."} => which is in file.txt
+
+
