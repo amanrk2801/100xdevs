@@ -120,7 +120,7 @@
 // app.use(express.json());
 
 // mongoose.connect(
-//   "mongodb+srv://admin:WRLaT7n13BTMj0Yw@cluster0.nixnuza.mongodb.net/"
+//   "mongodb+srv://admin:WRLaT7n13BTMj0Yw@cluster0.nixnuza.mongodb.net/userappnew"
 // );
 
 // // check connection
