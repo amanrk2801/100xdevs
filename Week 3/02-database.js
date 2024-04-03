@@ -163,3 +163,15 @@
 // });
 
 // app.listen(3000);
+
+// console.log("================================================");
+
+
+// Why we use Database instead of local storage?
+
+// 1. You don't have a standard way to store data
+// 2. Hard to distribute
+// 3. Dbs are optimized for reading and writing data
+// 4. Dbs have logic for indexing to make some queries faster
+
+
