@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate sum with Debouncing & Throttling</title>
+  </head>
+  <body>
+    <!-- Debouncing & Throttling -->
+    <!-- WITHOUT ADDING BUTTON -->
+    First Number:
+    <input
+      oninput="debouncePopulateDiv()"
+      type="text"
+      placeholder="First Number"
+      id="fNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+    Second Number:
+    <input
+      oninput="debouncePopulateDiv()"
+      type="text"
+      placeholder="Second Number"
+      id="sNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+
+    <div id="finalSum" style="margin-top: 10px"></div>
+
+    <!-- Using Backend server -->
+    <script>
+      function populateDiv() {
+        const a = document.getElementById("fNum").value;
+        const b = document.getElementById("sNum").value;
+        const element = document.getElementById("finalSum");
+        // fetch
+        fetch(`https://sum-server.100xdevs.com/sum?a=${a}&b=${b}`).then(
+          function (response) {
+            response.json().then(function (data) {
+              element.innerHTML = `Sum of ${a} and ${b}: ${data}`;
+            });
+          }
+        );
+      }
+
+      // delay the call to populateDiv until i have not been called for 100ms and I've been called only once
+      let timeout; // once
+      function debouncePopulateDiv() {
+        // how do you cancel a clock
+        // clearTimeout
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          populateDiv();
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

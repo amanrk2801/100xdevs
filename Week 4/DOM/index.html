@@ -1,0 +1,104 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate sum</title>
+  </head>
+  <body>
+    <!-- First Number:
+    <input
+      type="text"
+      placeholder="First Number"
+      id="fNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+    Second Number:
+    <input
+      type="text"
+      placeholder="Second Number"
+      id="sNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+    <button onclick="populateDiv()">Calculate sum</button> -->
+
+    <!-- WITHOUT ADDING BUTTON
+    First Number:
+    <input
+      oninput="populateDiv()"
+      type="text"
+      placeholder="First Number"
+      id="fNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+    Second Number:
+    <input
+      oninput="populateDiv()"
+      type="text"
+      placeholder="Second Number"
+      id="sNum"
+      style="margin-bottom: 10px"
+    />
+    <br /> -->
+
+    <!-- Find sum using backend server -->
+    First Number:
+    <input
+      type="text"
+      placeholder="First Number"
+      id="fNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+    Second Number:
+    <input
+      type="text"
+      placeholder="Second Number"
+      id="sNum"
+      style="margin-bottom: 10px"
+    />
+    <br />
+    <button onclick="populateDiv()">Calculate sum</button>
+
+    <div id="finalSum" style="margin-top: 10px"></div>
+
+    <!-- <script>
+      function populateDiv() {
+        const fNum = document.getElementById("fNum").value;
+        const sNum = document.getElementById("sNum").value;
+        const sum = parseInt(fNum) + parseInt(sNum);
+        const element = document.getElementById("finalSum");
+        element.innerHTML = `Sum of ${fNum} and ${sNum}: ${sum}`;
+      }
+    </script> -->
+
+    <!-- Using Backend server -->
+    <script>
+      async function populateDiv() {
+        // const a = document.getElementById("fNum").value;
+        // const b = document.getElementById("sNum").value;
+        // const element = document.getElementById("finalSum");
+        // // fetch
+        // fetch(`https://sum-server.100xdevs.com/sum?a=${a}&b=${b}`).then(
+        //   function (response) {
+        //     response.json().then(function (data) {
+        //       element.innerHTML = `Sum of ${a} and ${b}: ${data}`;
+        //     });
+        //   }
+        // );
+
+        // with async - await syntax
+        const a = document.getElementById("fNum").value;
+        const b = document.getElementById("sNum").value;
+        const element = document.getElementById("finalSum");
+        const response = await fetch(`https://sum-server.100xdevs.com/sum?a=${a}&b=${b}`);
+        const data = await response.json();
+        element.innerHTML = `Sum of ${a} and ${b}: ${data}`;
+      }
+    </script>
+  </body>
+</html>
+
+<!-- document is a global variable in browser we can use it to manipulate DOM-->
