@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JavaScript HTML DOM</h2>
+    <p>Remove Child element</p>
+
+    <div id="div1">
+        <p id="p1">This is paragraph 1</p>
+        <p id="p2">This is paragraph 2</p>
+    </div>
+
+    <script>
+        const parent = document.getElementById("div1");
+        const child = document.getElementById("p1");
+
+        parent.removeChild(child);
+    </script>
+</body>
+</html>

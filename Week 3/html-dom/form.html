@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="LoginForm" action="/action_page.php">
+      First Name: <input type="text" name="fname" value="Username" /><br />
+      Last Name: <input type="text" name="lname" value="Lastname" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <p>Click the "Try it" button to display the number of elements in the form.</p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="displayspace"></p>
+
+    <script>
+        function myFunction(){
+            var x= document.getElementById("LoginForm").elements.length;
+            var y= document.getElementById("LoginForm").elements[1].value;
+            document.getElementById("displayspace").innerHTML = "The number of elements in the form is: " + x + " and the value of the first element is: " + y;
+            
+            const para = document.createElement("p");
+            para.innerText = "This is a new paragraph created via DOM";
+            document.body.appendChild(para);
+        }
+    </script>
+  </body>
+</html>
