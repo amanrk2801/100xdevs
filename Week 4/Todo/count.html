@@ -1,0 +1,18 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count</title>
+  </head>
+  <body>
+    <button id="btn" onclick="updateDomValue()">count is 0</button>
+    <script>
+      // todo app => todo array is a state variable
+      let count = 0;
+      function updateDomValue() {
+        count++;
+        document.getElementById("btn").innerHTML = "count is " + count;
+      }
+    </script>
+  </body>
+</html>
