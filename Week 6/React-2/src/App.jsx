@@ -1,44 +1,45 @@
+/*6.1 | React hooks*/
 /* React Deeper dive : React returns, re-rendering */
 
-import { useState } from "react";
-import { useEffect } from "react";
-
-// import React from "react";
 // import { useState } from "react";
+// import { useEffect } from "react";
 
-// function App() {
-//   return (
-//     <div>
-//       <HeaderWithButton />
-//       <Header title="My name is raman"></Header>
-//     </div>
-//   );
-// }
+import React from "react";
+import { useState } from "react";
 
-// function HeaderWithButton() {
-//   const [firstTitle, setFirstTitle] = useState("My name is aman");
+function App() {
+  return (
+    <div>
+      <HeaderWithButton />
+      <Header title="My name is raman"></Header>
+    </div>
+  );
+}
 
-//   function changeTitle() {
-//     setFirstTitle("My name is " + Math.round(Math.random() * 100));
-//   }
+function HeaderWithButton() {
+  const [firstTitle, setFirstTitle] = useState("My name is aman");
 
-//   return (
-//     <>
-//       <button onClick={changeTitle}>Update Title</button>
-//       <Header title={firstTitle} />
-//     </>
-//   );
-// }
+  function changeTitle() {
+    setFirstTitle("My name is " + Math.round(Math.random() * 100));
+  }
 
-// const Header = React.memo(function Header({ title }) {
-//   return (
-//     <div>
-//       <h1>{title}</h1>
-//     </div>
-//   );
-// });
+  return (
+    <>
+      <button onClick={changeTitle}>Update Title</button>
+      <Header title={firstTitle} />
+    </>
+  );
+}
 
-// export default App;
+const Header = React.memo(function Header({ title }) {
+  return (
+    <div>
+      <h1>{title}</h1>
+    </div>
+  );
+});
+
+export default App;
 
 /*React Deeper dive : key*/
 
@@ -123,34 +124,34 @@ import { useEffect } from "react";
 
 /* Hooks: useEffect, useMemo, useCallback, useRef */
 
-function App() {
-  const [todos, setTodo] = useState([]);
+// function App() {
+//   const [todos, setTodo] = useState([]);
 
-  useEffect(() => {
-    setInterval(() => {
-      fetch("https://sum-server.100xdevs.com/todos").then(async (res) => {
-        const json = await res.json();
-        setTodo(json.todos);
-      });
-    }, 1000);
-  }, []);
+//   useEffect(() => {
+//     setInterval(() => {
+//       fetch("https://sum-server.100xdevs.com/todos").then(async (res) => {
+//         const json = await res.json();
+//         setTodo(json.todos);
+//       });
+//     }, 1000);
+//   }, []);
 
-  return (
-    <div>
-      {todos.map((todo) => (
-        <Todo key={todo.id} title={todo.title} description={todo.description} />
-      ))}
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       {todos.map((todo) => (
+//         <Todo key={todo.id} title={todo.title} description={todo.description} />
+//       ))}
+//     </div>
+//   );
+// }
 
-function Todo({ title, description }) {
-  return (
-    <div>
-      <h1>{title}</h1>
-      <h2>{description}</h2>
-    </div>
-  );
-}
+// function Todo({ title, description }) {
+//   return (
+//     <div>
+//       <h1>{title}</h1>
+//       <h2>{description}</h2>
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
