@@ -13,6 +13,3 @@ export const evenSelector = selector({
         return count % 2;
     }
 });
-
-// Todo creation application with filtering logic
-// todos, filter
