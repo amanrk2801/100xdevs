@@ -1,4 +1,4 @@
-name = "backend"
+name = "week-13-offline"
 compatibility_date = "2023-12-01"
 
 [vars]
@@ -18,6 +18,3 @@ JWT_SECRET="123456789"
 # binding = "DB"
 # database_name = "my-database"
 # database_id = ""
-
-# [ai]
-# binding = "AI"

@@ -2,7 +2,10 @@ import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { verify } from "hono/jwt";
-import { createPostInput, updatePostInput } from "@amankumbhalwar/common-medium";
+import {
+  createPostInput,
+  updatePostInput,
+} from "@amankumbhalwar/common-medium";
 
 export const blogRouter = new Hono<{
   // this required for removing error in c.env.DATABASE_URL
@@ -16,32 +19,23 @@ export const blogRouter = new Hono<{
 }>();
 
 blogRouter.use("/*", async (c, next) => {
-  // extract the userId
-  // pass it down to the route handler
-
-  // get the header
-  // verify the header
-  // if the header is correct, we need can proceed
-  // if not, we return the user a 403 status code
-  const authHeader = c.req.header("Authorization") || "";
-  if (!authHeader) {
-    c.status(401);
-    return c.json({ error: "unauthorized" });
-  }
-  const token = authHeader.split(" ")[1];
+  const authHeader = c.req.header("authorization") || "";
   try {
-    const payload = await verify(token, c.env.JWT_SECRET);
-    if (!payload) {
-      c.status(401);
-      return c.json({ error: "unauthorized" });
-    }
-    c.set("userId", payload.id);
-    await next();
-  } catch (e) {
-    c.status(403);
-    return c.json({
-      message: "You are not logged in",
-    });
+      const user = await verify(authHeader, c.env.JWT_SECRET);
+      if (user) {
+          c.set("userId", user.id);
+          await next();
+      } else {
+          c.status(403);
+          return c.json({
+              message: "You are not logged in"
+          })
+      }
+  } catch(e) {
+      c.status(403);
+      return c.json({
+          message: "You are not logged in"
+      })
   }
 });
 
@@ -114,7 +108,18 @@ blogRouter.get("/bulk", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const blogs = await prisma.post.findMany();
+  const blogs = await prisma.post.findMany({
+    select: {
+      content: true,
+      title: true,
+      id: true,
+      author: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
 
   return c.json({
     blogs,
