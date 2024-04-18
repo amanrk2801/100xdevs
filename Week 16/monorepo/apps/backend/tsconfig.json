@@ -1,0 +1,18 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "NodeNext",
+    "outDir": "./dist",
+    "target": "ES2015"
+  },
+  "exclude": ["node_modules"],
+  "include": ["."],
+  "esbuild": {
+    "bundle": true,
+    "outdir": "dist",
+    "platform": "node",
+    "format": "cjs",
+    "sourcemap": true
+  }
+}
