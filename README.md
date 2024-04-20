@@ -1,9 +1,5 @@
 # 100xdevs 
 
-- StoryBook
-- MUI
-- Tailwind
-
 # git push
 - git add .
 - git commit -m "changes"
@@ -15,4 +11,4 @@
 
 # Classes
 ## Week 0
-1. Intro, Setting up your IDE
+1. [Intro, Setting up your IDE](https://app.100xdevs.com/courses/3/1/3)
