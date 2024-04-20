@@ -10,7 +10,7 @@
 - run terminal
 ```
     docker build -t backend-app
-    docker run -p 3000:3000 -e DATABASE_URL="" backend-app
+    docker run -p 3000:3000 -e DATABASE_URL
 
 ```
 hello
