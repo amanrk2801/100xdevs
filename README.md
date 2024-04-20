@@ -1,9 +1,5 @@
 # 100xdevs 
 
-- StoryBook
-- MUI
-- Tailwind
-
 # git push
 - git add .
 - git commit -m "changes"
