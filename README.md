@@ -12,3 +12,7 @@
 # git pull
 - git fetch origin main
 - git merge origin/main
+
+# Classes
+## Week 0
+1. Intro, Setting up your IDE
